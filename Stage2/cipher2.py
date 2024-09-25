@@ -11,8 +11,13 @@ def test_shift(ciphertext, shift):
         else:
             # Append non-alphabetic characters as is
             plaintext.append(char)
-
     plaintext = ''.join(plaintext)
+    words = plaintext.split()
+    d = enchant.Dict("en_US")
+    print(plaintext)
+    for word in words:
+        if d.check(word) == False:
+            return ""
     return plaintext
 
 if __name__ == "__main__":
@@ -21,9 +26,10 @@ if __name__ == "__main__":
 
     shift = 0
     translated_message = ""
-    while translated_message == "" and shift<26:
+    while translated_message == "" and shift<=26:
         translated_message = test_shift(ciphertext, shift)
         shift+=1
 
+    print(translated_message, shift)
     with open("Stage1/data/output.txt", "w") as outfile:
         outfile.write(translated_message)  # Translated message
