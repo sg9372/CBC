@@ -51,7 +51,7 @@ def translate_with_known_chars(ciphertext, known_chars):
     translated_message = []
     for char in ciphertext:
         # Check if the character is in known_chars and has a non-empty value
-        if char.isalpha() and char.upper() in known_chars:
+        if char in known_chars:
             translated_value = known_chars[char.upper()]
             if translated_value:  # Check if the translated value is not an empty string
                 translated_message.append(translated_value.lower())
